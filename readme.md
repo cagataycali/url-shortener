@@ -8,6 +8,6 @@
 
 [AI Example - What's the weather today?](http://🌍✌🏼.ws/☂☔🌂🌦)
 
-**Deploy on your own shitty url shortener.**
+**Deploy your own shitty url shortener.**
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/cagataycali/url-shortener)
