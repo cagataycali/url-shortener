@@ -3,7 +3,7 @@ const app = express()
 const bodyParser = require('body-parser');
 const shortid = require('shortid');
 const emoji = require('./emoji');
-const fetch = str => emoji(str).then(arr => arr.slice(0, 4).join(''));
+const fetch = str => emoji(str).then(arr => arr.slice(0, 8).join(''));
 const mongoose = require('mongoose');
 const punycode = require('punycode');
 
