@@ -1,7 +1,7 @@
 {
   "name": "url-shortener",
   "version": "1.0.0",
-  "description": "On your own url shortener as a service.",
+  "description": "Own your own url shortener as a service.",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
