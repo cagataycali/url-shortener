@@ -2,7 +2,7 @@
     "name": "url-shortener",
     "description": "Have your own url shortener.",
     "repository": "https://github.com/cagataycali/url-shortener",
-    "logo": "",
+    "logo": "https://emojipedia-us.s3.amazonaws.com/cache/52/23/52230e8ab5779d3b28c53725672bad99.png",
     "keywords": [
         "url",
         "shortener"
