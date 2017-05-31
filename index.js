@@ -68,7 +68,7 @@ app.get('/:key?', (req, res) => {
           <meta name="og:type" content="website">
         </head>
         <body>
-          Home, sweet home... 🏡<br>
+          Home, sweet home.. 🏡<br>
           I guess you have a shitty URL. That's why you're here. 💩 <br>
           Let's see what I can do. <br><br>
           <form method="post" action="/">
