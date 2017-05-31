@@ -1,5 +1,7 @@
 ### Shitty url shortener, emoji and ai powered. 🌍✌🏼
 
+### [🌍✌🏼.ws](🌍✌🏼.ws)
+
 ![url-shortener](public/haha.png)
 
 ![output](public/output.png)
