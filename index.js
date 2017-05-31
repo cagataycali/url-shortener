@@ -73,7 +73,7 @@ app.get('/:key?', (req, res) => {
           Let's see what I can do. <br><br>
           <form method="post" action="/">
             <input type="text" name="url" placeholder="Your shitty URL." required><br>
-            Emoji ? <input type="checkbox" name="emoji" value="true">
+            Emoji ? <input type="checkbox" name="emoji" value="true" checked>
             <input type="submit" value="FUCK IT">
           </form>
           <br>
