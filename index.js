@@ -88,7 +88,9 @@ app.get('/:key?', (req, res) => {
 
 app.post('/', async (req, res) => {
   let key = req.body.emoji ? await fetch(req.body.url) : shortid.generate();
-  console.log(req.body);
+  if (!req.body.url.includes('http')) {
+    req.body.url = 'http://' + req.body.url;
+  }
   var keys = new Keys({
     url : req.body.url,
     key,
