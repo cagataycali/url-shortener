@@ -78,7 +78,7 @@ app.get('/:key?', (req, res) => {
           </form>
           <br>
           No reporting, no follow-up. It just works. <br>
-          World is ours, be contributor. 🌍✌🏼<br>
+          World is ours, become a contributor. 🌍✌🏼<br>
           <a href="https://github.com/cagataycali/url-shortener">GitHub</a>
         </body>
        </html>
