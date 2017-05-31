@@ -1,0 +1,41 @@
+{
+  "name": "url-shortener",
+  "version": "1.0.0",
+  "description": "On your own url shortener as a service.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "engines": {
+    "node": "7.x"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cagataycali/url-shortener.git"
+  },
+  "keywords": [
+    "url",
+    "shortener",
+    "url",
+    "shortener",
+    "on",
+    "your",
+    "own",
+    "service"
+  ],
+  "author": "Çağatay Çalı",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cagataycali/url-shortener/issues"
+  },
+  "homepage": "https://github.com/cagataycali/url-shortener#readme",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "express": "^4.15.3",
+    "got": "^7.0.0",
+    "mongoose": "^4.10.4",
+    "punycode": "^2.1.0",
+    "shortid": "^2.2.8",
+    "wildcard-subdomains": "^1.1.0"
+  }
+}

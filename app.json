@@ -1,0 +1,14 @@
+{
+    "name": "url-shortener",
+    "description": "Have your own url shortener.",
+    "repository": "https://github.com/cagataycali/url-shortener",
+    "logo": "",
+    "keywords": [
+        "url",
+        "shortener"
+    ],
+    "website": "https://cagatay.me",
+    "addons": [
+        "mongolab"
+    ]
+}
