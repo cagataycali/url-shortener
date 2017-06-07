@@ -1,4 +1,4 @@
-### Shitty url shortener, emoji and ai powered. 🌍✌🏼
+### Shitty url shortener, emoji powered.
 
 [🌍✌🏼.ws](http://🌍✌🏼.ws)
 

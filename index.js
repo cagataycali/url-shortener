@@ -1,8 +1,6 @@
 const express = require('express')
 const app = express()
 const bodyParser = require('body-parser');
-const emoji = require('./emoji');
-const fetch = str => emoji(str).then(arr => arr.slice(0, 8).join(''));
 const mongoose = require('mongoose');
 const punycode = require('punycode');
 const subdomain = require('subdomain');
@@ -84,7 +82,6 @@ app.post('/', async (req, res) => {
     let url = check(req.body.url);
     console.log(url);
     let emoji = req.body.emoji;
-    console.log('length',emoji.length);
 
     if (emoji.length === 2) {
       res.json({status:false, message: 'If you want to use this emoji, you should open an issue.'})
