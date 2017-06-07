@@ -2,11 +2,7 @@
 
 [🌍✌🏼.ws](http://🌍✌🏼.ws)
 
-![url-shortener](public/haha.png)
-
-![output](public/output.png)
-
-[AI Example - What's the weather today?](http://🌍✌🏼.ws/☂☔🌂🌦)
+![url-shortener](public/readme.png)
 
 **Deploy your own shitty url shortener.**
 
