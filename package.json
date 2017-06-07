@@ -38,6 +38,7 @@
     "punycode": "^2.1.0",
     "request": "^2.81.0",
     "shortid": "^2.2.8",
+    "socket.io": "^2.0.2",
     "subdomain": "^1.2.0",
     "valid-url": "^1.0.9"
   }
