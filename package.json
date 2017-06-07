@@ -31,11 +31,14 @@
   "homepage": "https://github.com/cagataycali/url-shortener#readme",
   "dependencies": {
     "body-parser": "^1.17.2",
+    "ch3ck": "^1.0.2",
     "express": "^4.15.3",
     "got": "^7.0.0",
     "mongoose": "^4.10.4",
     "punycode": "^2.1.0",
+    "request": "^2.81.0",
     "shortid": "^2.2.8",
-    "wildcard-subdomains": "^1.1.0"
+    "subdomain": "^1.2.0",
+    "valid-url": "^1.0.9"
   }
 }
