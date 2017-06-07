@@ -9,7 +9,7 @@ const http = require('http').Server(app);
 const io = require('socket.io')(http);
 const port = process.env.PORT || 3000;
 
-app.use(subdomain({ base : 'xn--7biv418msua', removeWWW : true }));
+app.use(subdomain({ base : '🌍✌🏼', removeWWW : true }));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: true
