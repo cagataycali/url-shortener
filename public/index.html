@@ -51,7 +51,7 @@
             <h1>There's your cool shortened URL!</h1>
             <h4 id="cool-title">That's your cool</h4>
             <h4 id="cool-url"></h4>
-            <h4 id="cool-friendly"></h4>
+            <!-- <h4 id="cool-friendly"></h4> -->
             <!-- <h4 id="cool-subdomain"> </h4> -->
             <a class="btn btn-secondary" href="https://github.com/cagataycali/url-shortener" target="_blank">
               Could you can give me star on GitHub? <i class="fa fa-lg fa-github"></i>
@@ -168,7 +168,7 @@
             .then(res => {
               if (res.status) {
                 $('#cool-url').text(`${res.url}`);
-                $('#cool-friendly').text(`${res.friendly}`);
+                // $('#cool-friendly').text(`${res.friendly}`);
                 // $('#cool-subdomain').text(`${res.subdomain}`);
                 $('#cool').show('slow');
                 $('#grab').hide('slow');
