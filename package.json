@@ -1,6 +1,6 @@
 {
   "name": "emoji-url-shortener",
-  "version": "1.5.6",
+  "version": "1.5.7",
   "description": "Own your own url shortener as a service.",
   "main": "index.js",
   "scripts": {
