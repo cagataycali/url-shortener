@@ -1,7 +1,7 @@
 ### Shitty url shortener, emoji powered.
 
-[🌍✌🏼.ws](http://🌍✌🏼.ws)
-[👎👍.ws](http://👎👍.ws/)
+* [🌍✌🏼.ws](http://🌍✌🏼.ws)
+* [👎👍.ws](http://👎👍.ws/)
 
 ![url-shortener](public/readme.png)
 

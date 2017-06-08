@@ -1,6 +1,6 @@
 {
   "name": "url-shortener",
-  "version": "1.0.1",
+  "version": "1.5.0",
   "description": "Own your own url shortener as a service.",
   "main": "index.js",
   "scripts": {
