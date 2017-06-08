@@ -17,7 +17,7 @@ It requires NodeJS and MongoDB.
 *Install*
 
 ```
-npm i -g url-shortener;
+npm i -g emoji-url-shortener;
 ```
 
 *Usage*
@@ -31,12 +31,12 @@ shorten https://github.com 👎👍
 *Install*
 
 ```
-npm i -S url-shortener
+npm i -S emoji-url-shortener
 ```
 
 *Usage*
 ```javascript
-const Shortener = require('url-shortener');
+const Shortener = require('emoji-url-shortener');
 
 const shorten = new Shortener();
 shorten.pick({url: 'https://github.com/', emoji: '👎👍'})
