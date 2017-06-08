@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const punycode = require('punycode');
 const subdomain = require('subdomain');
 const check = require('ch3ck');
+const emoji = require('./emoji');
 const http = require('http').Server(app);
 const io = require('socket.io')(http);
 const port = process.env.PORT || 3000;
@@ -103,6 +104,20 @@ app.post('/', async (req, res) => {
  } else {
    res.json({status:false, message: 'Gimme valid url.'})
  }
+});
+
+io.on('connection', (socket) => {
+  socket.on('url', async (msg) => {
+    if (check(msg) !== false) {
+      let url = check(msg);
+      console.log(url);
+      let response = await emoji(url);
+      console.log(response, url);
+      io.to(socket.id).emit('emojis', {status:true, response})
+   } else {
+     io.to(socket.id).emit('emojis', {status:false, response:'Gimme valid url.'})
+   }
+  });
 });
 
 http.listen(process.env.PORT || 3000, () => console.log(`Example app listening on port ${process.env.PORT || 3000}!`));

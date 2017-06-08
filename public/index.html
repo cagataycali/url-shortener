@@ -41,10 +41,10 @@
         <div class="col-10">
           <div class="text-left">
             <p class="lead emoji-picker-container">
-              <input type="text" class="form-control" id="emoji" placeholder="Choose your cool emoji" data-emojiable="true">
+              <input type="text" class="form-control" id="url" placeholder="Your shitty URL">
             </p>
-            <p class="lead emoji-picker-container">
-              <input type="text" class="form-control" style="display:none" id="url" placeholder="Your shitty URL">
+            <p class="lead emoji-picker-container" style="display:none" id="emoji-div">
+              <input type="text" class="form-control" id="emoji" placeholder="Choose your cool emoji" data-emojiable="true">
             </p>
           </div>
           <div id="cool" class="jumbotron" style="display:none">
@@ -98,16 +98,13 @@
           assetsPath: '/lib/img/',
           popupButtonClasses: 'fa fa-smile-o'
         });
-        // Finds all elements with `emojiable_selector` and converts them to rich emoji input fields
-        // You may want to delay this step if you have dynamically created input fields that appear later in the loading process
         // It can be called as many times as necessary; previously converted input fields will not be converted again
         window.emojiPicker.discover();
       });
 
       $(document).on('click', '#check', () => {
         var url = $('#url');
-        var emoji = $('#emoji');
-        if (emoji.val().trim().length === 0) {
+        if (url.val().trim().length === 0) {
           new Noty({
             text: `Choose one or more emoji`,
             type: 'warning',
@@ -116,33 +113,16 @@
             timeout: 2000
           }).show()
         } else {
-          fetch(`/check/${emoji.val()}`) // Call the fetch function passing the url of the API as a parameter
-            .then(res => res.json())
-            .then(res => {
-              if (typeof res === 'object') {
-                new Noty({
-                  text: res.message,
-                  type: 'warning',
-                  theme: 'nest',
-                  force: true,
-                  timeout: 2000
-                }).show()
-              } else {
-                if (res !== 'If you want to use this emoji, you should open an issue.') {
-                  url.show('slow');
-                  $('#grab').show('slow');
-                  $('#check').hide('slow');
-                }
-                new Noty({
-                  text: res,
-                  type: 'info',
-                  theme: 'nest',
-                  force: true,
-                  timeout: 2000
-                }).show()
-              }
-            })
+          new Noty({
+            text: 'Grr grr grr, generating your awesome emojis.',
+            type: 'info',
+            theme: 'nest',
+            force: true,
+            timeout: 1000
+          }).show()
+          socket.emit('url', url.val());
         }
+      });
 
         $(document).on('click', '#grab', () => {
           var url = $('#url');
@@ -168,13 +148,11 @@
             .then(res => {
               if (res.status) {
                 $('#cool-url').text(`${res.url}`);
-                // $('#cool-friendly').text(`${res.friendly}`);
-                // $('#cool-subdomain').text(`${res.subdomain}`);
                 $('#cool').show('slow');
-                $('#grab').hide('slow');
+                // $('#grab').hide('slow');
                 $('#check').hide('slow');
-                $('#emoji').hide('slow');
-                $('#url').hide('slow');
+                // $('#emoji').hide('slow');
+                // $('#url').hide('slow');
               } else {
                 new Noty({
                   text: res.message,
@@ -187,7 +165,7 @@
             });
           }
         });
-      })
+
       var socket = io();
       socket.on('new', (msg) => {
         new Noty({
@@ -198,6 +176,24 @@
           timeout: 1000
         }).show()
       });
+      socket.on('emojis', (response) => {
+        if (response.status === false) {
+          new Noty({
+            text: response.response,
+            type: 'error',
+            theme: 'nest',
+            force: true,
+            timeout: 1000
+          }).show()
+        } else {
+            console.log(response);
+            response.response = response.response.join('')
+            $('.emoji-wysiwyg-editor').html(response.response)
+            $('#emoji-div').show('slow');
+            $('#grab').show('slow');
+            $('#check').hide('slow');
+        }
+      })
 
 
     </script>
