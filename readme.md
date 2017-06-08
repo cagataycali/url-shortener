@@ -2,7 +2,7 @@
 
 * [🌍✌🏼.ws](http://🌍✌🏼.ws)
 * [👎👍.ws](http://👎👍.ws/)
-<!-- * [coool.ws](http://coool.ws/) -->
+* [coool.ws](http://coool.ws/)
 
 ![url-shortener](public/readme.png)
 
