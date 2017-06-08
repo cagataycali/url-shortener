@@ -1,6 +1,6 @@
 {
   "name": "url-shortener",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Own your own url shortener as a service.",
   "main": "index.js",
   "scripts": {
@@ -10,7 +10,7 @@
     "node": "7.x"
   },
   "bin": {
-    "shorten": "./cli.js" 
+    "shorten": "./cli.js"
   },
   "repository": {
     "type": "git",
