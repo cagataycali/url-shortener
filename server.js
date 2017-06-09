@@ -21,7 +21,7 @@ app.use(express.static('public'));
 var Schema = new mongoose.Schema({
   key: { type: String, unique: true, required: true },
   url: { type: String, unique: true, required: true },
-  stats: { type: mongoose.Schema.Types.Mixed }
+  stats: []
 });
 
 var mongolabUri = process.env.MONGODB_URI;
@@ -67,25 +67,23 @@ app.get('/subdomain/:key/', async (req, res) => {
 app.get('/', (req, res) => res.sendFile('index.html'));
 
 app.get('/:key', async (req, res) => {
-  try {
-    const response = await find(req.params.key);
-    console.log('REDIRECT', response);
-    let ua = parser(req.headers['user-agent']);
-    let country = req.headers['cf-ipcountry'];
-    let ip = req.headers['cf-connecting-ip'];
-    ua = {
-       browser: ua.browser,
-       os: ua.os,
-     }
-     console.log({
-        ip,
-        country,
-        ua,
-      });
-    res.redirect(301, response.url);
-  } catch (e) {
-    res.json({message:'Available for purchase! Haha, It\'s joke. But contributions is welcome.'});
-  }
+
+  Keys.findOne({ 'key': req.params.key }, (err, key) => {
+    if (key && key.url.length > 0) {
+      let ua = parser(req.headers['user-agent']);
+      let country = req.headers['cf-ipcountry'];
+      let ip = req.headers['cf-connecting-ip'];
+      ua = {
+         browser: ua.browser,
+         os: ua.os,
+       }
+      key.stats.push({ip,country,ua});
+      key.save();
+      res.redirect(301, key.url);
+    } else {
+      res.json({message:'Available for purchase! Haha, It\'s joke. But contributions is welcome.'});
+    }
+  });
 })
 
 app.post('/', async (req, res) => {
@@ -97,6 +95,7 @@ app.post('/', async (req, res) => {
       let keys = new Keys({
        url,
        key: emoji,
+       stats: [],
      });
 
      keys.save((err, doc) => {
