@@ -21,7 +21,6 @@ app.use(express.static('public'));
 var Schema = new mongoose.Schema({
   key: { type: String, unique: true, required: true },
   url: { type: String, unique: true, required: true },
-  stats: Schema.Types.Mixed,
 });
 
 var mongolabUri = process.env.MONGODB_URI;
