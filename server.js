@@ -6,6 +6,7 @@ const punycode = require('punycode');
 const subdomain = require('subdomain');
 const check = require('ch3ck');
 const emoji = require('./emoji');
+const parser = require('ua-parser-js');
 const http = require('http').Server(app);
 const io = require('socket.io')(http);
 const port = process.env.PORT || 3000;
@@ -20,6 +21,7 @@ app.use(express.static('public'));
 var Schema = new mongoose.Schema({
   key: { type: String, unique: true, required: true },
   url: { type: String, unique: true, required: true },
+  stats: Schema.Types.Mixed,
 });
 
 var mongolabUri = process.env.MONGODB_URI;
@@ -44,14 +46,10 @@ const find = (key) => {
 app.get('/check/:key', async (req, res) => {
   try {
     let response = await find(req.params.key);
-      response.message = `Aww, ${res.url} grabbed it first.!`
+      response.message = `Aww, ${res.url} grabbed it first!`
       res.json(response);
   } catch (e) {
-    // if (req.params.key.length === 2) {
-      // res.json('If you want to use this emoji, you should open an issue.')
-    // } else {
       res.json('Available for purchase! Haha, It\'s joke. But contributions is welcome.')
-    // }
   }
 });
 
@@ -72,6 +70,18 @@ app.get('/:key', async (req, res) => {
   try {
     const response = await find(req.params.key);
     console.log('REDIRECT', response);
+    let ua = parser(req.headers['user-agent']);
+    let country = req.headers['cf-ipcountry'];
+    let ip = req.headers['cf-connecting-ip'];
+    ua = {
+       browser: ua.browser,
+       os: ua.os,
+     }
+     console.log({
+        ip,
+        country,
+        ua,
+      });
     res.redirect(301, response.url);
   } catch (e) {
     res.json({message:'Available for purchase! Haha, It\'s joke. But contributions is welcome.'});
@@ -84,9 +94,6 @@ app.post('/', async (req, res) => {
     console.log(url);
     let emoji = req.body.emoji;
 
-    // if (emoji.length === 2) {
-      // res.json({status:false, message: 'If you want to use this emoji, you should open an issue.'})
-    // } else {
       let keys = new Keys({
        url,
        key: emoji,
@@ -100,7 +107,6 @@ app.post('/', async (req, res) => {
          res.json({status:true, url: `http://${punycode.toUnicode(req.headers.host)}/${emoji}`, subdomain: `http://${emoji}.${punycode.toUnicode(req.headers.host)}`, friendly: `http://coool.ws/${emoji}`})
        }
      });
-    // }
  } else {
    res.json({status:false, message: 'Gimme valid url.'})
  }
@@ -120,4 +126,4 @@ io.on('connection', (socket) => {
   });
 });
 
-http.listen(process.env.PORT || 3000, () => console.log(`Example app listening on port ${process.env.PORT || 3000}!`));
+http.listen(process.env.PORT || 3000, () => console.log(`Shitty emoji shortener listening on port ${process.env.PORT || 3000}!`));

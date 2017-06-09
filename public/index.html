@@ -187,11 +187,18 @@
           }).show()
         } else {
             console.log(response);
-            response.response = response.response.join('')
+            response.response = response.response.slice(0, 6).join('')
             $('.emoji-wysiwyg-editor').html(response.response)
             $('#emoji-div').show('slow');
             $('#grab').show('slow');
             $('#check').hide('slow');
+            new Noty({
+              text: `I think this emojis fits your url. <br> Even you can choose emoji! <br> Or you can use only text 😘`,
+              type: 'info',
+              theme: 'nest',
+              force: true,
+              timeout: 2500
+            }).show()
         }
       })
 

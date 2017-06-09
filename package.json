@@ -44,6 +44,7 @@
     "shortid": "^2.2.8",
     "socket.io": "^2.0.2",
     "subdomain": "^1.2.0",
+    "ua-parser-js": "^0.7.12",
     "valid-url": "^1.0.9"
   }
 }
