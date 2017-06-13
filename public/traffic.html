@@ -1,0 +1,46 @@
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['geochart']});
+      google.charts.setOnLoadCallback(drawRegionsMap);
+
+      var map = new Map();
+
+      map.set('Country', 'Traffic');
+
+      function get(country) {
+        return map.get(country) ? map.get(country) : 0;
+      }
+      function drawRegionsMap() {
+        fetch(`${window.location.origin}/check/${window.location.href.split('/').pop(-1)}`)
+          .then(res => res.json())
+          .then(res => {
+            if (typeof res !== 'object') {
+              alert(res)
+            } else {
+              let regions = res.stats.filter(piece => piece.country);
+              regions.forEach(region => {
+                let count = get(region.country);
+                count++;
+                map.set(region.country, count);
+              })
+            }
+
+            var data = google.visualization.arrayToDataTable(Array.from(map));
+
+            var options = {};
+
+            var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
+
+            chart.draw(data, options);
+          })
+      }
+    </script>
+  </head>
+  <body>
+    <center>
+      <div id="regions_div" style="width: 900px; height: 500px;"></div>
+    </center>
+  </body>
+</html>

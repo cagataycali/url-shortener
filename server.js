@@ -86,6 +86,8 @@ app.get('/:key', async (req, res) => {
   });
 })
 
+app.get('/stats/:key', (req, res) => res.sendFile(__dirname + '/public/traffic.html'));
+
 app.post('/', async (req, res) => {
   if (check(req.body.url) !== false) {
     let url = check(req.body.url);
@@ -103,7 +105,7 @@ app.post('/', async (req, res) => {
          res.json({status:false, message: 'Somebody grabbed your emoji or you already shortened your url.'})
        } else {
          io.sockets.emit('new', `${emoji} grabbed by ${url} now.`)
-         res.json({status:true, url: `http://${punycode.toUnicode(req.headers.host)}/${emoji}`, subdomain: `http://${emoji}.${punycode.toUnicode(req.headers.host)}`, friendly: `http://coool.ws/${emoji}`})
+         res.json({status:true, url: `http://${punycode.toUnicode(req.headers.host)}/${emoji}`, subdomain: `http://${emoji}.${punycode.toUnicode(req.headers.host)}`, friendly: `http://coool.ws/${emoji}`, stats:`http://${punycode.toUnicode(req.headers.host)}/stats/${emoji}`})
        }
      });
  } else {
