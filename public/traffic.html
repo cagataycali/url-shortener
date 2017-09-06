@@ -1,46 +1,96 @@
 <html>
   <head>
+    <style>
+      /*I've added a little bit of style but this page needs serious front-end work.*/
+      @media(min-width: 768px){
+        #regions_div{
+          width: 60%;
+          display: inline-block;          
+        }
+        .piecharts{
+          width: 39%;
+          display: inline-block;
+        }
+        .basic_info{
+          text-align: center;
+        }
+      }
+
+    </style>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
-      google.charts.load('current', {'packages':['geochart']});
-      google.charts.setOnLoadCallback(drawRegionsMap);
+      //added 'corechart' package for pie charts
+      google.charts.load('current', {'packages':['geochart', 'corechart']});
+      //changed callback name from drawRegionsMap to drawCharts because it does more work now
+      google.charts.setOnLoadCallback(drawCharts);
 
-      var map = new Map();
+      //changed the map variables and added insertIntoMap function  to support more maps
+      var geoLocMap = new Map();
+      var osMap = new Map(); 
+      var browserMap = new Map();
 
-      map.set('Country', 'Traffic');
-
-      function get(country) {
-        return map.get(country) ? map.get(country) : 0;
+      geoLocMap.set('Country', 'Traffic');
+      osMap.set('OS', 'Traffic');
+      browserMap.set('Browser', 'Traffic');
+      //get() function is gone and its replaced with this, which just inserts the data to map
+      function insertIntoMap(data, map){
+        let count = map.get(data) ? map.get(data) : 0;
+        count++
+        map.set(data, count);
       }
-      function drawRegionsMap() {
+
+      function drawCharts() {
         fetch(`${window.location.origin}/check/${window.location.href.split('/').pop(-1)}`)
           .then(res => res.json())
           .then(res => {
             if (typeof res !== 'object') {
               alert(res)
             } else {
-              let regions = res.stats.filter(piece => piece.country);
-              regions.forEach(region => {
-                let count = get(region.country);
-                count++;
-                map.set(region.country, count);
+              document.getElementById('tv').innerHTML = res.__v;
+              document.getElementById('url').innerHTML = window.location.origin + '/' + res.key;
+              document.getElementById('fwt').innerHTML = res.url;
+              //its a mess I know but I couldn't find another way
+              let geoStats = res.stats.filter(p => p.country);
+              let osStats = res.stats.filter(p => p.ua.os.name);
+              let browserStats = res.stats.filter(p => p.ua.browser.name);
+              geoStats.forEach(user => {
+                insertIntoMap(user.country, geoLocMap)
+              });
+              osStats.forEach(user => {
+                insertIntoMap(user.ua.os.name, osMap)
+              });
+              browserStats.forEach(user => {
+                insertIntoMap(user.ua.browser.name, browserMap);
               })
+              
             }
 
-            var data = google.visualization.arrayToDataTable(Array.from(map));
-
+            var geoData = google.visualization.arrayToDataTable(Array.from(geoLocMap));
             var options = {};
+            var geoChart = new google.visualization.GeoChart(document.getElementById('regions_div'));
+            geoChart.draw(geoData, options);
 
-            var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
+            var osData = google.visualization.arrayToDataTable(Array.from(osMap));
+            var osPieChart = new google.visualization.PieChart(document.getElementById('os_pie'));
+            osPieChart.draw(osData, options);
 
-            chart.draw(data, options);
+            var browserData = google.visualization.arrayToDataTable(Array.from(browserMap));
+            var browserPieChart = new google.visualization.PieChart(document.getElementById('browser_pie'));
+            browserPieChart.draw(browserData, options);
           })
       }
     </script>
   </head>
   <body>
-    <center>
-      <div id="regions_div" style="width: 900px; height: 500px;"></div>
-    </center>
+      <div class="basic_info">
+        <h2>URL: <a id="url"></a></h2>
+        <h2>Forwarded to: <a id="fwt"></a></h2>
+        <h4>Total visits: <span id="tv"></span></h4>
+      </div>
+      <div id="regions_div"></div>
+      <div class="piecharts">
+        <div class="piechart" id="os_pie"></div>
+        <div class="piechart" id="browser_pie"></div>
+      </div>
   </body>
 </html>
