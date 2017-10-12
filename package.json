@@ -4,7 +4,8 @@
   "description": "Own your own url shortener as a service.",
   "main": "index.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "postinstall": "opencollective postinstall"
   },
   "engines": {
     "node": "7.x"
@@ -39,6 +40,7 @@
     "express": "^4.15.3",
     "got": "^7.0.0",
     "mongoose": "^4.10.4",
+    "opencollective": "^1.0.3",
     "punycode": "^2.1.0",
     "request": "^2.81.0",
     "shortid": "^2.2.8",
@@ -46,5 +48,10 @@
     "subdomain": "^1.2.0",
     "ua-parser-js": "^0.7.12",
     "valid-url": "^1.0.9"
+  },
+  "collective": {
+    "type": "opencollective",
+    "url": "https://opencollective.com/url-shortener",
+    "logo": "https://opencollective.com/opencollective/logo.txt"
   }
 }
