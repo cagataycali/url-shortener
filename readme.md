@@ -1,8 +1,9 @@
 ### Shitty url shortener, emoji powered.
 
-* [🌍✌🏼.ws](http://🌍✌🏼.ws)
-* [👎👍.ws](http://👎👍.ws/)
-* [coool.ws](http://coool.ws/)
+* [🌍✌🏼.ws](http://🌍✌🏼.ws) (*I did not renew the domain name again because it was expensive.*)
+* [👎👍.ws](http://👎👍.ws/) (*I did not renew the domain name again because it was expensive.*)
+* [coool.ws](http://coool.ws/) (*I did not renew the domain name again because it was expensive.*)
+* [shortener.cagatay.pro](https://shortener.cagatay.pro)
 
 ![url-shortener](public/readme.png)
 
