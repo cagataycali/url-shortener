@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "node server.js",
-    "postinstall": "opencollective postinstall"
+    "postinstall": "opencollective postinstall",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "engines": {
     "node": "7.x"
@@ -47,11 +49,13 @@
     "socket.io": "^2.0.2",
     "subdomain": "^1.2.0",
     "ua-parser-js": "^0.7.12",
-    "valid-url": "^1.0.9"
+    "valid-url": "^1.0.9",
+    "snyk": "^1.83.0"
   },
   "collective": {
     "type": "opencollective",
     "url": "https://opencollective.com/url-shortener",
     "logo": "https://opencollective.com/opencollective/logo.txt"
-  }
+  },
+  "snyk": true
 }
