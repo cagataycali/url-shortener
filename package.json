@@ -7,7 +7,7 @@
     "start": "node server.js",
     "postinstall": "opencollective postinstall",
     "snyk-protect": "snyk protect",
-    "prepublish": "npm run snyk-protect"
+    "prepublish": "yarn run snyk-protect"
   },
   "engines": {
     "node": "7.x"
@@ -50,7 +50,7 @@
     "subdomain": "^1.2.0",
     "ua-parser-js": "^0.7.18",
     "valid-url": "^1.0.9",
-    "snyk": "^1.116.3"
+    "snyk": "^1.317.0"
   },
   "collective": {
     "type": "opencollective",
