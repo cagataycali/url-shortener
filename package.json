@@ -40,7 +40,7 @@
     "ch3ck": "^1.0.2",
     "commander": "^2.9.0",
     "express": "^4.16.0",
-    "got": "^7.0.0",
+    "got": "^11.8.5",
     "mongoose": "^4.13.17",
     "opencollective": "^1.0.3",
     "punycode": "^2.1.0",
